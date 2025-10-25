@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Own Your Name</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Own Your Name</h1>
+        <input type="text" id="searchBar" placeholder="Search...">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="about-content">
+            <h2>About Aniket</h2>
+            <p>This website is dedicated to Aniket, who was 15 years old in July 2011. His hobbies and passions are celebrated here.</p>
+        </div>
+    </main>
+    <footer>
+        <div class="languages">
+            <a href="#">Hindi</a>
+            <a href="#">Tamil</a>
+            <a href="#">English</a>
+            <a href="#">Spanish</a>
+            <a href="#">French</a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
