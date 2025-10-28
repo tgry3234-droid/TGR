@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X Factor - Make Websites for You</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: 
+                radial-gradient(200% 100% at bottom left, #2c3e50 0%, transparent 50%),
+                radial-gradient(200% 70% at top right, #34495e 0%, transparent 50%),
+                radial-gradient(60% 30% at 50% 80%, #3498db 0%, transparent 50%),
+                #0a0a23;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Stars */
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .star:nth-child(odd) {
+            width: 1px;
+            height: 1px;
+            animation-duration: 2s;
+        }
+
+        .star:nth-child(even) {
+            width: 2px;
+            height: 2px;
+            animation-duration: 4s;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1) translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5) translateY(-10px);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 10px 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-shadow: 0 0 10px cyan;
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 20px lime;
+            transform: scale(1.1);
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 5;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        .content {
+            text-align: center;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 4rem;
+            background: linear-gradient(45deg, cyan, lime, magenta);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px cyan;
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px cyan, 0 0 30px cyan, 0 0 40px cyan; }
+            to { text-shadow: 0 0 30px lime, 0 0 40px lime, 0 0 50px lime; }
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px white;
+        }
+
+        /* Search Bar */
+        .search-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            padding: 5px;
+            margin: 0 auto 40px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="search"] {
+            width: 100%;
+            padding: 20px 30px;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: white;
+            font-size: 18px;
+            placeholder-color: rgba(255, 255, 255, 0.7);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* CTA Button */
+        .cta {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(46, 204, 113, 0.6);
+        }
+
+        /* About Info */
+        .content p {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .content a {
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 28px;
+            padding: 15px 30px;
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid #00ff88;
+            border-radius: 50px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .content a:hover {
+            background: #00ff88;
+            color: black;
+            box-shadow: 0 0 30px #00ff88;
+        }
+
+        /* Saturn */
+        .saturn {
+            position: fixed;
+            bottom: 10%;
+            right: 5%;
+            width: 180px;
+            height: 90px;
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .saturn::before {
+            content: '';
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(25deg);
+            width: 220px;
+            height: 25px;
+            background: 
+                conic-gradient(from 0deg, transparent 0deg 90deg, #d4af37 90deg 270deg, transparent 270deg);
+            border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+            filter: blur(1px);
+            opacity: 0.8;
+        }
+
+        .saturn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 80px;
+            background: 
+                radial-gradient(ellipse 60% 70% at 45% 50%, #deb887 0%, #cd853f 30%, #8b4513 50%, #4a2c0b 70%);
+            border-radius: 50% 50% 48% 48%;
+            box-shadow: 
+                inset 0 0 20px rgba(0,0,0,0.5),
+                0 0 30px rgba(255, 215, 0, 0.3);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .cta { font-size: 20px; padding: 15px 40px; }
+            .saturn { width: 120px; height: 60px; }
+            nav a { margin: 0 10px; font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('about')">About</a>
+    </nav>
+
+    <div id="home" class="page active">
+        <div class="content">
+            <h1>X Factor</h1>
+            <div class="search-container">
+                <input type="search" id="search" placeholder="Search for websites, ideas or services...">
+            </div>
+            <button class="cta" onclick="makeWebsite()">Make a website for you</button>
+        </div>
+    </div>
+
+    <div id="about" class="page">
+        <div class="content">
+            <h2>Aniket Paswan</h2>
+            <p>Age: <strong>19</strong></p>
+            <p>WhatsApp: <a href="https://wa.me/918910880020" target="_blank">8910880020</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Create Stars
+        function createStars() {
+            const body = document.body;
+            for (let i = 0; i < 250; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                body.appendChild(star);
+            }
+        }
+
+        // Show Page
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // CTA Action
+        function makeWebsite() {
+            alert('🚀 Awesome! Contact Aniket on WhatsApp to get your custom website built today! 📱');
+        }
+
+        // Search Functionality (Dummy)
+        document.getElementById('search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                alert('🔍 Searching for: ' + this.value + '\n💡 Pro Tip: Contact via WhatsApp for custom sites!');
+                this.value = '';
+            }
+        });
+
+        // Init
+        window.addEventListener('load', () => {
+            createStars();
+        });
+    </script>
+</body>
+</html>
